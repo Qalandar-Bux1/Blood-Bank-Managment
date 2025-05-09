@@ -1,0 +1,109 @@
+@startuml
+
+class Donor {
+    + donor_id: int
+    + first_name: string
+    + last_name: string
+    + date_of_birth: date
+    + gender: string
+    + blood_type: string
+    + contact_info: string
+    + medical_history: string
+    + last_donation_date: date
+}
+
+class BloodBag {
+    + blood_bag_id: int
+    + blood_type: string
+    + component_type: string
+    + volume: int
+    + collection_date: date
+    + expiration_date: date
+    + donor_id: int
+}
+
+class BloodStorage {
+    + storage_id: int
+    + location: string
+    + temperature: string
+    + capacity: int
+}
+
+class BloodRequest {
+    + request_id: int
+    + request_date: date
+    + blood_type: string
+    + quantity: int
+    + hospital_id: int
+    + customer_id: int
+    + fulfilled_date: date
+}
+
+class HospitalInfo {
+    + hospital_id: int
+    + hospital_name: string
+    + location: string
+    + contact_info: string
+}
+
+class Distribution {
+    + distribution_id: int
+    + blood_bag_id: int
+    + destination: string
+    + distribution_date: date
+    + transport_method: string
+}
+
+class BloodCamp {
+    + camp_id: int
+    + camp_name: string
+    + location: string
+    + organizer: string
+    + start_date: date
+    + end_date: date
+    + number_of_donors: int
+}
+
+class Employee {
+    + employee_id: int
+    + first_name: string
+    + last_name: string
+    + position: string
+    + salary: float
+    + blood_bank_id: int
+}
+
+class Accounts {
+    + account_id: int
+    + account_type: string
+    + expenses: float
+    + revenues: float
+    + transaction_date: date
+}
+
+class DiscardManagement {
+    + discard_id: int
+    + blood_bag_id: int
+    + reason_for_discard: string
+    + discard_date: date
+}
+
+class DiseaseRecognizer {
+    + disease_id: int
+    + blood_bag_id: int
+    + disease_type: string
+    + diagnosis_date: date
+    + remarks: string
+}
+
+Donor -- "*" Donation
+Donor -- "*" BloodBag
+BloodBag -- "0..1" BloodStorage
+BloodRequest -- "*" Distribution
+BloodRequest -- "*" HospitalInfo
+Employee -- "*" BloodBank
+Accounts -- "*" BloodBank
+DiscardManagement -- "*" BloodBag
+DiseaseRecognizer -- "*" BloodBag
+
+@enduml

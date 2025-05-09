@@ -1,0 +1,70 @@
+@startuml
+
+entity "Employee" {
+  + emp_ID (PK)
+  --
+  fname
+  lname
+  gender
+  age
+  contact_add
+  emp_email
+  emp_pass
+}
+
+entity "Admin" {
+  + admin_ID (PK)
+  --
+  fname
+  lname
+  gender
+  age
+  contact_add
+  admin_email
+  admin_pass
+}
+entity "Job Department" {
+  + job_ID (PK)
+  --
+  job_dept
+  name
+  description
+  salary_range
+}
+
+entity "Salary or Bonus" {
+  + salary_ID (PK)
+  --
+  job_ID (FK)
+  amount
+  annual
+  bonus
+}
+
+entity "Leave" {
+  + leave_ID (PK)
+  --
+  emp_ID (FK)
+  date
+  status
+  reason
+}
+
+entity "Payroll" {
+  + payroll_ID (PK)
+  --
+  emp_ID (FK)
+  job_ID (FK)
+  salary_ID (FK)
+  leave_ID (FK)
+  date
+  report
+}
+
+Employee ||--o{ Payroll
+Admin ||--o{ Payroll
+Job Department ||--o{ Payroll
+Salary or Bonus ||--o{ Payroll
+Leave ||--o{ Payroll
+
+@enduml
